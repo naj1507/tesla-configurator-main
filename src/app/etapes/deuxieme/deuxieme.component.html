@@ -1,0 +1,28 @@
+<div>
+    <label for="configSelect">Select Configuration:</label>
+    <select id="configSelect" (change)="onSelectConfig()">
+      <option [value]="null" disabled [selected]="!selectedConfig">Select a configuration</option>
+      <option *ngFor="let config of configs" [value]="config.id" [selected]="config.id === selectedConfig?.id">
+        {{ config.description }}
+      </option>
+    </select>
+  
+    <div *ngIf="selectedConfig">
+        <p>Range: {{ selectedConfig.range }} miles</p>
+        <p>Max Speed: {{ selectedConfig.speed }} mph</p>
+        <p>Price: ${{ selectedConfig.price }}</p>
+    </div>
+    
+    <div *ngIf="options?.yoke">
+        <input type="checkbox" id="includeYoke" [checked]="yokeOptionSelected" (change)="onCheckboxChange('yoke', $event)">
+        <label for="includeYoke">Yoke Steering Wheel</label>
+    </div>
+    
+    <div *ngIf="options?.towHitch">
+        <input type="checkbox" id="includeTow" [checked]="towHitchOptionSelected" (change)="onCheckboxChange('towHitch', $event)">
+        <label for="includeTow">Tow Hitch Package</label>
+    </div>
+    <div *ngIf="recapService.selectedModel && recapService.selectedColor">
+      <img [src]="getUrl()" alt="Selected Model" />
+    </div>
+</div>

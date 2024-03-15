@@ -1,0 +1,23 @@
+<div>
+  <label for="modelSelect">Select Model:</label>
+  <select id="modelSelect" (change)="onSelectModel($event)">
+    <option [value]="null" disabled selected>Select a model</option>
+    <option *ngFor="let model of models" [value]="model.code" [selected]="selectedModel === model">
+      {{ model.description }}
+    </option>
+  </select>
+  
+  <label for="colorSelect">Select Color:</label>
+  <select id="colorSelect" (change)="onSelectColor($event)" [disabled]="!selectedModel">
+    <ng-container *ngIf="selectedModel">
+      <option value="" disabled selected>Select a color</option>
+      <option *ngFor="let color of selectedModel.colors" [value]="color.code" [selected]="selectedColor === color">
+        {{ color.description }}
+      </option>
+    </ng-container>
+  </select>
+
+  <div *ngIf="selectedModel && selectedColor">
+    <img [src]="getUrl()" alt="Selected Model" />
+  </div>
+</div>

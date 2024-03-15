@@ -1,0 +1,38 @@
+<hgroup>
+    <h1>Summary</h1>
+    <p class="subtitle">Your Tesla {{ recapService.selectedModel?.description }}</p>
+  </hgroup>
+  <table>
+    <tbody>
+      <tr *ngIf="recapService.selectedConfig">
+        <th>{{ recapService.selectedConfig.description }}</th>
+        <td>{{ recapService.selectedConfig.price | currency:'USD' }}</td>
+      </tr>
+      <tr>
+        <td *ngIf="recapService.selectedConfig">Range: {{ recapService.selectedConfig.range }} mi - Top Speed: {{ recapService.selectedConfig.speed }} mph</td>
+        <td></td>
+      </tr>
+      <tr *ngIf="recapService.selectedColor">
+        <th>{{ recapService.selectedColor.description }}</th>
+        <td>{{ recapService.selectedColor.price | currency:'USD' }}</td>
+      </tr>
+      <tr *ngIf="recapService.towHitch">
+        <th>Tow Hitch Package</th>
+        <td>{{ OPTION_PRICE | currency:'USD' }}</td>
+      </tr>
+      <tr *ngIf="recapService.yoke">
+        <th>Yoke Steering Wheel</th>
+        <td>{{ OPTION_PRICE | currency:'USD' }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th class="footer-cell">Total Cost</th>
+        <td class="footer-cell">{{ getTotalCost()  | currency:'USD' }}</td>
+      </tr>
+    </tfoot>
+  </table>
+  <div *ngIf="recapService.selectedModel && recapService.selectedColor">
+    <img [src]="getUrl()" alt="Selected Model" />
+  </div>
+  
