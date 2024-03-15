@@ -38,8 +38,8 @@ export class PremierComponent implements OnInit {
     });
   }
 
-  onSelectModel(event: any) {
-    const selectedModelCode = event.target.value;
+  onSelectModel(event: Event) {
+    const selectedModelCode = (event.target as HTMLSelectElement).value;
     const previousModel = this.selectedModel; 
     this.selectedModel = this.models.find(model => model.code === selectedModelCode) || null;
   
@@ -56,8 +56,8 @@ export class PremierComponent implements OnInit {
   }
   
 
-  onSelectColor(event: any) {
-    const colorCode = event.target.value;
+  onSelectColor(event: Event) {
+    const colorCode = (event.target as HTMLSelectElement).value;
     const previousColor = this.selectedColor; 
     this.selectedColor = this.selectedModel?.colors.find(color => color.code === colorCode) || null;
   

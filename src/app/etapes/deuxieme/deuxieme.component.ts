@@ -62,8 +62,8 @@ export class DeuxiemeComponent implements OnInit {
     }
   }
 
-  onCheckboxChange(option: string, event: any) {
-    const checked = event.target.checked;
+  onCheckboxChange(option: string, event: Event) {
+    const checked = (event.target as HTMLInputElement).checked;
     if (option === 'yoke') {
       this.recapService.setYokeOption(checked);
     } else if (option === 'towHitch') {
